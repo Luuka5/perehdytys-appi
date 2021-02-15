@@ -1,0 +1,29 @@
+[
+    {
+        "name": "Hallinnolliset tehtävät",
+        "tasks": [
+            {
+                "name": "Työsopimus",
+                "link": "https://www.example.com",
+                "priority": 1
+            },
+            {
+                "name": "Sovi perehdyttäjä",
+                "description": "Sovi ensisijainen perehdyttäjä ja tarkista hänen aikataulut, ohjeista ottamaan tämä boardi haltuun."
+            }
+        ]
+    },
+    {
+        "name": "Perehdyttäjä hoitaa ennen ensimmäistä työpäivää",
+        "tasks": [
+            {
+                "name": "työvälineet"
+            },
+            {
+                "name": "Valmistele työvälineet",
+                "description": "Laita kaikki työvälineet kuntoon.",
+                "link": "https://www.example.com"
+            }
+        ]
+    }
+]
