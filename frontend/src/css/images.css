@@ -1,0 +1,21 @@
+
+.svg {
+    overflow: hidden;
+    margin: 0px;
+    padding: 0px;
+}
+
+.fillAccent1 {
+    fill-opacity: 0.7;
+    fill: var(--accentColor1);
+    stroke: none;
+}
+.fillAccent2 {
+    fill-opacity: 0.7;
+    fill: var(--accentColor2);
+    stroke: none;
+}
+.fillMain {
+    fill: var(--mainColor);
+    stroke: none;
+}

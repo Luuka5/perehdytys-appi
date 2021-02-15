@@ -1,0 +1,30 @@
+
+html, body, #root {
+    padding: 0px;
+    margin: 0px;
+}
+
+#root {
+    --mainColor: #c83e3b;
+    --accentColor1: #ffb6b4;
+    --accentColor2: #f3d7a0;
+    --backgroundColor: #ffffff;
+    --lightTextColor: #ffffff;
+    --darkTextColor: #753333;
+    --doneColor: #8bdec5;
+    
+    background-color: var(--backgroundColor);
+}
+
+.button {
+    border: 2px solid var(--accentColor2);
+    background-color: var(--backgroundColor);
+    border-radius: 20px;
+    padding: 10px;
+    color: var(--darkTextColor);
+    transition: background-color 0.2s;
+}
+
+.button:active {
+    background-color: var(--accentColor1);
+}

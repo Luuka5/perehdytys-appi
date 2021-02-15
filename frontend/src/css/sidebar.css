@@ -1,0 +1,45 @@
+
+.sidebar {
+    z-index: 110;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    width: 70vw;
+    min-width: fit-content;
+    height: 100vh;
+    margin: 0px;
+    padding: 10px;
+    box-sizing: border-box;
+
+    background-color: var(--backgroundColor);
+    border-right: 3px solid var(--accentColor2);
+    transition: left 0.4s ease;
+}
+.hide {
+    left: -70vw;
+}
+
+.sidebarButton, .sidebarHeading {
+    margin: 15px;
+    color: var(--darkTextColor);
+}
+
+.sidebarHeading {
+    font-weight: 600;
+}
+
+.buttonGroup {
+    padding-left: 30px;
+}
+.sidebarButton:active {
+    color: var(--accentColor1);
+}
+
+.toggleSidebarButton {
+    z-index: 120;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    margin: 20px;
+}
