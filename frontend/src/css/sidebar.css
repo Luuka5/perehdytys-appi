@@ -1,7 +1,7 @@
 
 .sidebar {
     z-index: 110;
-    position: absolute;
+    position: fixed;
     top: 0px;
     left: 0px;
 
@@ -20,9 +20,17 @@
     left: -70vw;
 }
 
-.sidebarButton, .sidebarHeading {
-    margin: 15px;
+.sidebarHeading {
+    margin: 10px;
     color: var(--darkTextColor);
+}
+
+.sidebarButton {
+    margin: 5px;
+    color: var(--darkTextColor);
+    display: flex;
+    flex-direction: column;
+    border: none;
 }
 
 .sidebarHeading {
@@ -30,7 +38,7 @@
 }
 
 .buttonGroup {
-    padding-left: 30px;
+    padding-left: 20px;
 }
 .sidebarButton:active {
     color: var(--accentColor1);
@@ -38,7 +46,7 @@
 
 .toggleSidebarButton {
     z-index: 120;
-    position: absolute;
+    position: fixed;
     left: 0px;
     bottom: 0px;
     margin: 20px;

@@ -28,3 +28,24 @@ html, body, #root {
 .button:active {
     background-color: var(--accentColor1);
 }
+
+.loadingContainer {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+p {
+    color: var(--darkTextColor);
+}
+
+button, button:active {
+    background-color: #0000;
+    outline: 0;
+}

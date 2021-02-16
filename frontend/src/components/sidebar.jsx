@@ -15,20 +15,54 @@ class Sidebar extends React.Component {
         });
     }
 
+    changeCategory(index) {
+        this.props.changeCategory(index);
+        this.setState({ isVisible: false });
+    }
+
+    changeContent(index) {
+        this.props.changeContent(index);
+        this.setState({ isVisible: false });
+    }
+
     render() {
+        let categories;
+        if (this.props.categories) {
+            categories = this.props.categories.map((name, i) => {
+                return (
+                    <button
+                        key={i}
+                        className="sidebarButton"
+                        onClick={() => this.changeCategory(i)}
+                    >
+                        {name}
+                    </button>
+                )
+            });
+        } else {
+            categories = (
+                <p>Ladataan...</p>
+            )
+        }
+
+        const buttons = this.props.buttons.map((button, i) => {
+            return (
+                <button
+                    key={i}
+                    className="sidebarButton"
+                    onClick={() => this.changeContent(button.id)}
+                >{button.text}</button>
+            )
+        });
+
         return (
             <div>
                 <div className={"sidebar" + (this.state.isVisible ? "" : " hide")}>
+                    {buttons}
                     <div>
                         <p className="sidebarHeading">Kategotiat:</p>
                         <div className="buttonGroup">
-                            <p className="sidebarButton">Hallinnolliset asiat</p>
-                            <p className="sidebarButton">Ensimmäinen viikko</p>
-                        </div>
-                        <p className="sidebarHeading">Perehdyttäjälle:</p>
-                        <div className="buttonGroup">
-                            <p className="sidebarButton">Hallinnolliset asiat</p>
-                            <p className="sidebarButton">Ensimmäinen viikko</p>
+                            {categories}
                         </div>
                     </div>
                 </div>

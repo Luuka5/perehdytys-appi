@@ -19,3 +19,12 @@
     fill: var(--mainColor);
     stroke: none;
 }
+
+.fillDark {
+    fill: var(--darkTextColor);
+    stroke: none;
+}
+.strokeDark {
+    fill: none;
+    stroke: var(--darkTextColor);
+}

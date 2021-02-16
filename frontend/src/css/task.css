@@ -18,6 +18,8 @@
 }
 
 .task {
+    display: flex;
+    flex-direction: column;
     border: 2px solid var(--accentColor2);
     color: var(--darkTextColor);
     margin: 10px;
@@ -26,21 +28,33 @@
     background-color: var(--backgroundColor);
 }
 
+.taskDone {
+    filter: brightness(90%);
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 10px;
+}
+
+.link svg {
+    width: 5%;
+    margin: 5px;
+}
+
 .taskContainer {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: stretch;
+    min-height: 100vh;
 
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
     margin: 0px;
     overflow-x: hidden;
     overflow-y: scroll;
-    padding-bottom: 50vh;
+    padding-bottom: 30vh;
     box-sizing: border-box;
 
     background-color: var(--mainColor);
