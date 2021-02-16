@@ -9,18 +9,22 @@ class Task extends React.Component {
     }
 
     render() {
+        const description = this.props.description ? (
+            <p>{this.props.description}</p>
+        ) : '';
+        const link = this.props.link ? (
+            <a href={this.props.link}
+                className="link button" >
+                <images.Link />
+                <p>{this.props.link}</p>
+            </a>
+        ) : '';
 
         return (
             <div className={"task"+ (this.props.done ? " taskDone" : "")}>
                 <h3>{this.props.name}</h3>
-                <p>{this.props.description}</p>
-
-                <a href={this.props.link}
-                    className="link button" >
-                    <images.Link />
-                    <p>{this.props.link}</p>
-                </a>
-
+                {description}
+                {link}
                 <button className="button">
                     {this.props.done ? "Peruuta" : "Merkitse valmiiksi!"}
                 </button>

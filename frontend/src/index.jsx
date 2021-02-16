@@ -74,7 +74,7 @@ class App extends React.Component {
 				break;
 			case contentTypes.settings:
 				content = (
-					<h1>Reset</h1>
+					<p>Asetukset</p>
 				);
 				break;
 		}
