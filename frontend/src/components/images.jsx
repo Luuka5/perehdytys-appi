@@ -43,7 +43,36 @@ function Link() {
     );
 }
 
+function SidebarIcon() {
+    return (
+        <svg viewBox="0 0 100 100">
+            <rect
+                className="fillDark"
+                width="90"
+                height="14"
+                x="5"
+                y="13"
+                ry="0" />
+            <rect
+                className="fillDark"
+                width="90"
+                height="14"
+                x="5"
+                y="43"
+                ry="0" />
+            <rect
+                className="fillDark"
+                width="90"
+                height="15"
+                x="5"
+                y="73"
+                ry="0" />
+        </svg>
+    );
+}
+
 export default {
     Waves,
     Link,
+    SidebarIcon,
 };

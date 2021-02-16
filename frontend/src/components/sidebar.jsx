@@ -1,4 +1,5 @@
 import React from 'react';
+import images from './images.jsx';
 
 class Sidebar extends React.Component {
 
@@ -66,7 +67,9 @@ class Sidebar extends React.Component {
                         </div>
                     </div>
                 </div>
-                <p className="button toggleSidebarButton" onClick={() => this.toggleSidebar()}>Kategoriat</p>
+                <div className="button toggleSidebarButton" onClick={() => this.toggleSidebar()}>
+                    <images.SidebarIcon />
+                </div>
             </div>
         );
     }
