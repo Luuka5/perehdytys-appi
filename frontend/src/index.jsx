@@ -23,18 +23,33 @@ class App extends React.Component {
 		super(props);
 
 		const firstTime = localStorage.getItem('isInfoDisplayed') === null;
-		if (firstTime) localStorage.setItem('isInfoDisplayed', true);
+		if (firstTime) { localStorage.setItem('isInfoDisplayed', true); }
+
+		let tasksDone = JSON.parse(localStorage.getItem('tasksDone'));
+		if (!Array.isArray(tasksDone)) tasksDone = [];
 
 		this.state = {
 			tasks: [],
 			categories: [],
 			currnetCategory: 0,
 			contentType: firstTime ? contentTypes.info : contentTypes.todo,
+			tasksDone: tasksDone,
 		}
 
 		fetch('./tasks.json')
 			.then(res => res.json())
-			.then(data => this.setState({ tasks: data.tasks, categories: data.categories }));
+			.then(data => {
+
+				const tasks = data.tasks.map(task => {
+					task.done = tasksDone.includes(task.id);
+					return task;
+				});
+
+				this.setState({
+					tasks: tasks,
+					categories: data.categories
+				})
+			});
 	}
 
 	getTaskFilter() {
@@ -51,6 +66,27 @@ class App extends React.Component {
 		});
 	}
 
+	saveData(data) {
+		localStorage.setItem('tasksDone', JSON.stringify(data));
+	}
+
+	markTask(taskId, isDone) {
+		const tasks = [...this.state.tasks];
+		for (let task of tasks) {
+			if (task.id === taskId) {
+				task.done = isDone;
+				break;
+			}
+		}
+
+		const tasksDone = tasks.filter(task => task.done).map(task => {
+			return task.id;
+		});
+
+		this.setState({ tasks, tasksDone });
+		this.saveData(tasksDone);
+	}
+
 	render() {
 		let content;
 		switch (this.state.contentType) {
@@ -61,6 +97,7 @@ class App extends React.Component {
 							filter={() => true}
 							category={"Seuraavaksi:"}
 							tasks={this.state.tasks}
+							markTask={(id, isDone) => this.markTask(id, isDone)}
 						/>
 					</div>
 				);
@@ -71,6 +108,7 @@ class App extends React.Component {
 						filter={this.getTaskFilter()}
 						category={this.state.categories[this.state.currnetCategory]}
 						tasks={this.state.tasks}
+						markTask={(id, isDone) => this.markTask(id, isDone)}
 					/>
 				);
 				break;
@@ -94,7 +132,7 @@ class App extends React.Component {
 					changeContent={(id) => this.setState({ contentType: id })}
 					buttons={[
 						{ id: contentTypes.info, text: "Info" },
-						{ id: contentTypes.todo, text: "Todo-lista" },
+						{ id: contentTypes.todo, text: "TODO-lista" },
 						{ id: contentTypes.settings, text: "Asetukset" },
 					]}
 				/>

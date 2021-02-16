@@ -25,8 +25,10 @@ class Task extends React.Component {
                 <h3>{this.props.name}</h3>
                 {description}
                 {link}
-                <button className="button">
-                    {this.props.done ? "Peruuta" : "Merkitse valmiiksi!"}
+                <button
+                    className="button"
+                    onClick={() => this.props.onDoneClicked(!this.props.done)}>
+                    {this.props.done ? "Peruuta" : "Merkitse valmiiksi"}
                 </button>
             </div>
         );
@@ -45,6 +47,10 @@ class Tasks extends React.Component {
         if (this.props.tasks) {
 
             this.props.tasks.sort((a, b) => {
+                if (!(a.done && b.done)) {
+                    if (a.done) return 1;
+                    if (b.done) return -1;
+                }
                 return a.priority - b.priority
             });
 
@@ -55,7 +61,8 @@ class Tasks extends React.Component {
                         name={task.name}
                         description={task.description}
                         link={task.link}
-                        done={false}
+                        done={task.done}
+                        onDoneClicked={isDone => this.props.markTask(task.id, isDone)}
                     />
                 )
             });
