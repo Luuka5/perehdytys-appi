@@ -10,9 +10,10 @@ import Sidebar from './components/sidebar.jsx';
 import Tasks from './components/tasks.jsx';
 
 const contentTypes = {
-	frontpage: 0,
+	todo: 0,
 	tasks: 1,
 	settings: 2,
+	info: 3,
 };
 Object.freeze(contentTypes);
 
@@ -20,25 +21,27 @@ class App extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+		const firstTime = localStorage.getItem('isInfoDisplayed') === null;
+		if (firstTime) localStorage.setItem('isInfoDisplayed', true);
+
 		this.state = {
-			tasks: undefined,
-			categories: undefined,
+			tasks: [],
+			categories: [],
 			currnetCategory: 0,
-			contentType: contentTypes.frontpage,
+			contentType: firstTime ? contentTypes.info : contentTypes.todo,
 		}
 
-		fetch('./api/tasks')
+		fetch('./tasks.json')
 			.then(res => res.json())
 			.then(data => this.setState({ tasks: data.tasks, categories: data.categories }));
-			
 	}
 
 	getTaskFilter() {
-		if (this.state.isFrontpage) {
-			return () => true;
+		if (this.state.contentType === contentTypes.tasks) {
+			return task => task.category === this.state.currnetCategory;
 		}
-
-		return task => task.category === this.state.currnetCategory;
+		return () => true;
 	}
 
 	changeCategory(i) {
@@ -51,10 +54,9 @@ class App extends React.Component {
 	render() {
 		let content;
 		switch (this.state.contentType) {
-			case contentTypes.frontpage:
+			case contentTypes.todo:
 				content = (
 					<div>
-						<h1>Tervetuloa!</h1>
 						<Tasks
 							filter={() => true}
 							category={"Seuraavaksi:"}
@@ -77,6 +79,11 @@ class App extends React.Component {
 					<p>Asetukset</p>
 				);
 				break;
+			case contentTypes.info:
+				content = (
+					<p>Tervetuloa</p>
+				);
+				break;
 		}
 
 		return (
@@ -86,7 +93,8 @@ class App extends React.Component {
 					changeCategory={(i) => this.changeCategory(i)}
 					changeContent={(id) => this.setState({ contentType: id })}
 					buttons={[
-						{ id: contentTypes.frontpage, text: "Etusivu" },
+						{ id: contentTypes.info, text: "Info" },
+						{ id: contentTypes.todo, text: "Todo-lista" },
 						{ id: contentTypes.settings, text: "Asetukset" },
 					]}
 				/>

@@ -38,7 +38,8 @@
     flex-direction: row;
     align-items: center;
     margin: 10px 0px;
-    height: fit-content
+    height: fit-content;
+    overflow: hidden;
 }
 
 .link svg {
