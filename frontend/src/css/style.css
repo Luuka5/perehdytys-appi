@@ -1,8 +1,11 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@200&display=swap');
+
 html, body {
     padding: 0px;
     margin: 0px;
     
+    font-family: 'Fira Sans', sans-serif;
 }
 
 .app {
@@ -16,6 +19,7 @@ html, body {
 
     background-color: var(--backgroundColor);
     min-height: 100vh;
+    
 }
 
 .button {

@@ -5,17 +5,19 @@ import './css/style.css';
 import './css/task.css';
 import './css/sidebar.css';
 import './css/settings.css';
+import './css/frontpage.css';
 import './css/images.css';
 
 import Sidebar from './components/sidebar.jsx';
 import Tasks from './components/tasks.jsx';
 import Settings from './components/settings.jsx';
+import Frontpage from './components/frontpage.jsx';
 
 const contentTypes = {
 	todo: 0,
 	tasks: 1,
 	settings: 2,
-	info: 3,
+	frontpage: 3,
 	editor: 4,
 	instructorTodo: 5,
 };
@@ -45,7 +47,7 @@ class App extends React.Component {
 			categories: [],
 			instructorCategories: [],
 			currnetCategory: 0,
-			contentType: firstTime ? contentTypes.info : contentTypes.todo,
+			contentType: firstTime ? contentTypes.frontpage : contentTypes.frontpage,
 			tasksDone: tasksDone,
 			settings: settings,
 		}
@@ -117,32 +119,28 @@ class App extends React.Component {
 		switch (this.state.contentType) {
 			case contentTypes.todo:
 				content = (
-					<div>
-						<Tasks
-							filter={task => 
-								this.state.categories
-									.map(c => c.id)
-									.includes(task.category)}
-							categoryName="Seuraavaksi:"
-							tasks={this.state.tasks}
-							markTask={(id, isDone) => this.markTask(id, isDone)}
-						/>
-					</div>
+					<Tasks
+						filter={task => 
+							this.state.categories
+								.map(c => c.id)
+								.includes(task.category)}
+						categoryName="Seuraavaksi:"
+						tasks={this.state.tasks}
+						markTask={(id, isDone) => this.markTask(id, isDone)}
+					/>
 				);
 				break;
 			case contentTypes.instructorTodo:
 				content = (
-					<div>
-						<Tasks
+					<Tasks
 						filter={task => 
-								this.state.instructorCategories
-									.map(c => c.id)
-									.includes(task.category)}
-							categoryName="Seuraavaksi:"
-							tasks={this.state.tasks}
-							markTask={(id, isDone) => this.markTask(id, isDone)}
-						/>
-					</div>
+							this.state.instructorCategories
+								.map(c => c.id)
+								.includes(task.category)}
+						categoryName="Seuraavaksi:"
+						tasks={this.state.tasks}
+						markTask={(id, isDone) => this.markTask(id, isDone)}
+					/>
 				);
 				break;
 			case contentTypes.tasks:
@@ -166,22 +164,23 @@ class App extends React.Component {
 						reset={() => this.reset()}/>
 				);
 				break;
-			case contentTypes.info:
+			case contentTypes.frontpage:
 				content = (
-					<div></div>
+					<Frontpage showTasks={() => this.setState({ contentType: contentTypes.todo })}/>
 				);
+				break;
+			case contentTypes.editor:
 				break;
 		}
 
 		let buttons = [
 			{ id: contentTypes.settings, text: "Asetukset" },
-			{ id: contentTypes.info, text: "Info" },
+			{ id: contentTypes.frontpage, text: "Info" },
 			{ id: contentTypes.todo, text: "TODO-lista" },
 		];
 		if (this.state.settings.mode === 1) {
 			buttons = buttons.concat([
 				{ id: contentTypes.instructorTodo, text: "TODO-lista perehdyttäjälle" },
-				{ id: contentTypes.editor, text: "Editori" },
 			]);
 		}
 

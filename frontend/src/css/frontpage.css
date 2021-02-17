@@ -1,0 +1,43 @@
+
+.frontpage {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-bottom: 20vh;
+}
+
+.frontpage button {
+    z-index: 90;
+}
+
+.frontpagebg {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100vw;
+    height: 100vh;
+}
+
+.frontpageHeading {
+    z-index: 50;
+    height: 55vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.frontpageHeading p {
+    color: #ffffff;
+    font-size: 240%;
+    margin: 5px;
+}
+
+.introContainer {
+    color: var(--textColor);
+    font-size: 140%;;
+    margin: 10px;
+    padding: 10px;
+}
