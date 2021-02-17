@@ -48,4 +48,20 @@ button, button:active {
     background-color: #0000;
     outline: 0;
     font-size: 120%;
+    margin: 10px;
+}
+
+.popupContainer {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--shadowColor);
+    color: var(--mainColor);
+    z-index: 200;
 }

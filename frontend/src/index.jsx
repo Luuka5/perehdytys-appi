@@ -36,7 +36,7 @@ class App extends React.Component {
 		if (!settings) {
 			settings = {
 				theme: 0,
-				mode: 1,
+				mode: 0,
 			}
 		}
 
@@ -89,6 +89,19 @@ class App extends React.Component {
 
 		this.setState({ tasks, tasksDone });
 		localStorage.setItem('tasksDone', JSON.stringify(tasksDone));
+	}
+
+	reset() {
+		this.setState({
+			settings: {
+				theme: 0,
+				mode: 0,
+			},
+			tasksDone: [],
+		});
+		this.state.tasks.forEach(task => task.done = false);
+
+		localStorage.clear();
 	}
 
 	getCurrentCategory() {
@@ -146,7 +159,11 @@ class App extends React.Component {
 				content = (
 					<Settings
 						settings={this.state.settings}
-						handleChange={settings => this.setState({ settings })} />
+						handleChange={settings => {
+							this.setState({ settings });
+							localStorage.setItem('settings', JSON.stringify(settings));
+						}}
+						reset={() => this.reset()}/>
 				);
 				break;
 			case contentTypes.info:
