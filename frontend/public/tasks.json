@@ -39,9 +39,23 @@
         }
     ],
     "categories": [
-        "Hallinnolliset asiat",
-        "Perehdyttäjä hoitaa",
-        "Perehdytyksen tärkeimmät asiat",
-        "Helpful links"
+        {
+            "id": 0,
+            "name": "Hallinnolliset asiat"
+        },
+        {
+            "id": 2,
+            "name":  "Perehdytyksen tärkeimmät asiat"
+        },
+        {
+            "id": 3,
+            "name": "Helpful links"
+        }
+    ],
+    "instructorCategories": [
+        {
+            "id": 1,
+            "name":  "Perehdyttäjä hoitaa"
+        }
     ]
 }

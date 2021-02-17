@@ -29,21 +29,20 @@ class Sidebar extends React.Component {
     render() {
         let categories;
         if (this.props.categories) {
-            categories = this.props.categories.map((name, i) => {
+            categories = this.props.categories.map((category, i) => {
                 return (
                     <button
                         key={i}
                         className="sidebarButton"
-                        onClick={() => this.changeCategory(i)}
-                    >
-                        {name}
+                        onClick={() => this.changeCategory(category.id)} >
+                        {category.name}
                     </button>
                 )
             });
         } else {
             categories = (
                 <p>Ladataan...</p>
-            )
+            );
         }
 
         const buttons = this.props.buttons.map((button, i) => {

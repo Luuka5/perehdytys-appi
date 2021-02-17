@@ -4,16 +4,20 @@ import ReactDOM from 'react-dom';
 import './css/style.css';
 import './css/task.css';
 import './css/sidebar.css';
+import './css/settings.css';
 import './css/images.css';
 
 import Sidebar from './components/sidebar.jsx';
 import Tasks from './components/tasks.jsx';
+import Settings from './components/settings.jsx';
 
 const contentTypes = {
 	todo: 0,
 	tasks: 1,
 	settings: 2,
 	info: 3,
+	editor: 4,
+	instructorTodo: 5,
 };
 Object.freeze(contentTypes);
 
@@ -28,12 +32,22 @@ class App extends React.Component {
 		let tasksDone = JSON.parse(localStorage.getItem('tasksDone'));
 		if (!Array.isArray(tasksDone)) tasksDone = [];
 
+		let settings = JSON.parse(localStorage.getItem('settings'));
+		if (!settings) {
+			settings = {
+				theme: 0,
+				mode: 1,
+			}
+		}
+
 		this.state = {
 			tasks: [],
 			categories: [],
+			instructorCategories: [],
 			currnetCategory: 0,
 			contentType: firstTime ? contentTypes.info : contentTypes.todo,
 			tasksDone: tasksDone,
+			settings: settings,
 		}
 
 		fetch('./tasks.json')
@@ -47,27 +61,17 @@ class App extends React.Component {
 
 				this.setState({
 					tasks: tasks,
-					categories: data.categories
-				})
+					categories: data.categories,
+					instructorCategories: data.instructorCategories,
+				});
 			});
 	}
-
-	getTaskFilter() {
-		if (this.state.contentType === contentTypes.tasks) {
-			return task => task.category === this.state.currnetCategory;
-		}
-		return () => true;
-	}
-
+	
 	changeCategory(i) {
 		this.setState({
 			currnetCategory: i,
 			contentType: contentTypes.tasks,
 		});
-	}
-
-	saveData(data) {
-		localStorage.setItem('tasksDone', JSON.stringify(data));
 	}
 
 	markTask(taskId, isDone) {
@@ -84,7 +88,15 @@ class App extends React.Component {
 		});
 
 		this.setState({ tasks, tasksDone });
-		this.saveData(tasksDone);
+		localStorage.setItem('tasksDone', JSON.stringify(tasksDone));
+	}
+
+	getCurrentCategory() {
+		for (let category of [...this.state.categories, ...this.state.instructorCategories]) {
+			if (category.id === this.state.currnetCategory)
+				return category;
+		}
+		return null;
 	}
 
 	render() {
@@ -94,8 +106,26 @@ class App extends React.Component {
 				content = (
 					<div>
 						<Tasks
-							filter={() => true}
-							category={"Seuraavaksi:"}
+							filter={task => 
+								this.state.categories
+									.map(c => c.id)
+									.includes(task.category)}
+							categoryName="Seuraavaksi:"
+							tasks={this.state.tasks}
+							markTask={(id, isDone) => this.markTask(id, isDone)}
+						/>
+					</div>
+				);
+				break;
+			case contentTypes.instructorTodo:
+				content = (
+					<div>
+						<Tasks
+						filter={task => 
+								this.state.instructorCategories
+									.map(c => c.id)
+									.includes(task.category)}
+							categoryName="Seuraavaksi:"
 							tasks={this.state.tasks}
 							markTask={(id, isDone) => this.markTask(id, isDone)}
 						/>
@@ -105,8 +135,8 @@ class App extends React.Component {
 			case contentTypes.tasks:
 				content = (
 					<Tasks
-						filter={this.getTaskFilter()}
-						category={this.state.categories[this.state.currnetCategory]}
+						filter={task => task.category === this.state.currnetCategory}
+						categoryName={this.getCurrentCategory().name}
 						tasks={this.state.tasks}
 						markTask={(id, isDone) => this.markTask(id, isDone)}
 					/>
@@ -114,27 +144,48 @@ class App extends React.Component {
 				break;
 			case contentTypes.settings:
 				content = (
-					<p>Asetukset</p>
+					<Settings
+						settings={this.state.settings}
+						handleChange={settings => this.setState({ settings })} />
 				);
 				break;
 			case contentTypes.info:
 				content = (
-					<p>Tervetuloa</p>
+					<div></div>
 				);
 				break;
 		}
 
+		let buttons = [
+			{ id: contentTypes.settings, text: "Asetukset" },
+			{ id: contentTypes.info, text: "Info" },
+			{ id: contentTypes.todo, text: "TODO-lista" },
+		];
+		if (this.state.settings.mode === 1) {
+			buttons = buttons.concat([
+				{ id: contentTypes.instructorTodo, text: "TODO-lista perehdyttäjälle" },
+				{ id: contentTypes.editor, text: "Editori" },
+			]);
+		}
+
+		let themeStyle = {};
+		if (this.state.settings.theme === 1) {
+			themeStyle = {
+				"--mainColor": "#b15552",
+				"--backgroundColor":" #222021",
+				"--textColor": "#ffffff",
+				"--shadowColor": "#fff2",
+				"--doneBrightness": "60%",
+			}
+		}
+
 		return (
-			<div className="app">
+			<div className="app" style={themeStyle}>
 				<Sidebar
-					categories={this.state.categories}
+					categories={[...this.state.categories, ...this.state.instructorCategories]}
 					changeCategory={(i) => this.changeCategory(i)}
 					changeContent={(id) => this.setState({ contentType: id })}
-					buttons={[
-						{ id: contentTypes.info, text: "Info" },
-						{ id: contentTypes.todo, text: "TODO-lista" },
-						{ id: contentTypes.settings, text: "Asetukset" },
-					]}
+					buttons={buttons}
 				/>
 				{content}
 			</div>

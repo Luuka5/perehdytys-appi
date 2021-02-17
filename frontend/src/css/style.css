@@ -1,19 +1,21 @@
 
-html, body, #root {
+html, body {
     padding: 0px;
     margin: 0px;
+    
 }
 
-#root {
+.app {
     --mainColor: #c83e3b;
     --accentColor1: #ffb6b4;
     --accentColor2: #f3d7a0;
     --backgroundColor: #ffffff;
-    --lightTextColor: #ffffff;
-    --darkTextColor: #753333;
-    --doneColor: #8bdec5;
-    
+    --textColor: #753333;
+    --shadowColor: #0008;
+    --doneBrightness: 80%;
+
     background-color: var(--backgroundColor);
+    min-height: 100vh;
 }
 
 .button {
@@ -21,7 +23,7 @@ html, body, #root {
     background-color: var(--backgroundColor);
     border-radius: 10px;
     padding: 10px;
-    color: var(--darkTextColor);
+    color: var(--textColor);
     transition: background-color 0.2s;
 }
 
@@ -41,11 +43,9 @@ html, body, #root {
     align-items: center;
 }
 
-p {
-    color: var(--darkTextColor);
-}
 
 button, button:active {
     background-color: #0000;
     outline: 0;
+    font-size: 120%;
 }

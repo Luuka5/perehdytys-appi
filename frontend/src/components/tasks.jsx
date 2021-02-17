@@ -77,7 +77,7 @@ class Tasks extends React.Component {
         return (
             <div className="taskContainer">
                 <div className="taskHeadingContainer">
-                    <h1 className="taskHeading">{this.props.category}</h1>
+                    <h1 className="taskHeading">{this.props.categoryName}</h1>
                     <images.Waves />
                 </div>
                 {list}

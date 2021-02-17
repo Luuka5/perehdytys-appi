@@ -1,0 +1,55 @@
+
+.settings {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    padding-bottom: 20vh;
+}
+
+.settingsHeading {
+    color: var(--textColor);
+    border-bottom: 3px solid var(--accentColor1);
+    margin: 40px;
+}
+
+.optionHeading {
+    font-size: 150%;
+    margin: 5px;
+    color: var(--textColor);
+}
+
+.options {
+    padding-left: 10px;
+    margin-bottom: 40px;
+    margin-left: 10px;
+    border-left: 2px solid var(--accentColor1);
+}
+
+.option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.option button {
+    margin: 5px;
+    border: none;
+    color: var(--textColor);
+    font-size: 120%;
+}
+
+.option button:active {
+    color: var(--accentColor1);
+}
+
+.option div {
+    width: 10px;
+    height: 10px;
+    margin: 0px;
+}
+
+.selected {
+    border-radius: 5px;
+    background-color: var(--mainColor);
+}

@@ -23,11 +23,11 @@
 }
 
 .fillDark {
-    fill: var(--darkTextColor);
+    fill: var(--textColor);
     stroke: none;
 }
 
 .strokeDark {
     fill: none;
-    stroke: var(--darkTextColor);
+    stroke: var(--textColor);
 }

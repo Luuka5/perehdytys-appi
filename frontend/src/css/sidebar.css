@@ -5,13 +5,15 @@
     top: 0px;
     left: 0px;
 
-    width: 70vw;
-    min-width: fit-content;
+    width: fit-content;
+    max-width: 95vw;
     height: 100vh;
+    overflow: scroll;
     margin: 0px;
     padding: 10px;
+    padding-bottom: 30vh;
     box-sizing: border-box;
-    box-shadow: 0px 0px 20px #0008;
+    box-shadow: 0px 0px 20px var(--shadowColor);
 
     background-color: var(--backgroundColor);
     border-right: 3px solid var(--accentColor2);
@@ -19,31 +21,35 @@
 }
 
 .hide {
-    left: -70vw;
-    box-shadow: 0px 0px 0px #0008;
+    left: -95vw;
+    box-shadow: 0px 0px 0px var(--shadowColor);
 }
 
 .sidebarHeading {
-    margin: 10px;
-    color: var(--darkTextColor);
+    font-size: 175%;
+    margin: 15px 10px;
+    color: var(--textColor);
 }
 
 .sidebarButton {
-    margin: 5px;
-    color: var(--darkTextColor);
+    white-space: nowrap;
+    font-size: 120%;
+    margin: 10px 5px;
+    color: var(--textColor);
     display: flex;
     flex-direction: column;
     border: none;
 }
 
 .sidebarHeading {
+    white-space: nowrap;
     font-weight: 600;
 }
 
 .buttonGroup {
     padding-left: 5px;
     margin-left: 10px;
-    border-left: 2px solid var(--accentColor1)
+    border-left: 2px solid var(--accentColor1);
 }
 
 .sidebarButton:active {
@@ -51,7 +57,7 @@
 }
 
 .toggleSidebarButton {
-    box-shadow: 0px 0px 20px #0005;
+    box-shadow: 0px 0px 20px var(--shadowColor);
     z-index: 120;
     position: fixed;
     left: 0px;
