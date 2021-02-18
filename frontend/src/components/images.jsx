@@ -43,6 +43,63 @@ function Link() {
     );
 }
 
+function Text() {
+    return (
+        <svg viewBox="-5 -5 80 80">
+            <rect
+                className="fillDark"
+                width="40"
+                height="4"
+                x="5"
+                y="5"
+                ry="0" />
+            <rect
+                className="fillDark"
+                width="50"
+                height="4"
+                x="5"
+                y="15"
+                ry="0" />
+            <rect
+                className="fillDark"
+                width="44"
+                height="4"
+                x="5"
+                y="25"
+                ry="0" />
+            <rect
+                className="fillDark"
+                width="39"
+                height="4"
+                x="5"
+                y="35"
+                ry="0" />
+            <rect
+                className="fillDark"
+                width="48"
+                height="4"
+                x="5"
+                y="45"
+                ry="0" />
+            <rect
+                className="fillDark"
+                width="43"
+                height="4"
+                x="5"
+                y="55"
+                ry="0" />
+            <rect
+                className="strokeDark"
+                style={{ strokeWidth: 5 }}
+                width="60"
+                height="70"
+                x="0"
+                y="-2.5"
+                ry="0" />
+        </svg>
+    );
+}
+
 function SidebarIcon() {
     return (
         <svg viewBox="0 0 100 100">
@@ -90,9 +147,34 @@ function FrontpageBg() {
     );
 }
 
+function xIcon() {
+    return (
+        <svg viewBox="0 0 100 100">
+            <rect
+                className="fillDark"
+                transform="rotate(45)"
+                width="120"
+                height="15"
+                x="10"
+                y="-7.5"
+                ry="0" />
+            <rect
+                className="fillDark"
+                transform="rotate(45)"
+                width="15"
+                height="120"
+                x="62.5"
+                y="-60"
+                ry="0" />
+        </svg>
+    );
+}
+
 export default {
     Waves,
     Link,
+    Text,
     SidebarIcon,
     FrontpageBg,
+    xIcon,
 };

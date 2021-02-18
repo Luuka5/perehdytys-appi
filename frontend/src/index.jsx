@@ -47,7 +47,7 @@ class App extends React.Component {
 			categories: [],
 			instructorCategories: [],
 			currnetCategory: 0,
-			contentType: firstTime ? contentTypes.frontpage : contentTypes.frontpage,
+			contentType: firstTime ? contentTypes.frontpage : contentTypes.todo,
 			tasksDone: tasksDone,
 			settings: settings,
 		}
@@ -106,12 +106,20 @@ class App extends React.Component {
 		localStorage.clear();
 	}
 
+	getCategories() {
+		if (this.state.settings.mode === 1)
+			return [...this.state.categories, ...this.state.instructorCategories]
+		return this.state.categories;
+	}
+
 	getCurrentCategory() {
-		for (let category of [...this.state.categories, ...this.state.instructorCategories]) {
+		for (let category of this.getCategories()) {
 			if (category.id === this.state.currnetCategory)
 				return category;
 		}
-		return null;
+		return {
+			name: 'Kategoriaa ei löytynyt.',
+		};
 	}
 
 	render() {
@@ -174,8 +182,8 @@ class App extends React.Component {
 		}
 
 		let buttons = [
+			{ id: contentTypes.frontpage, text: "Etusivu" },
 			{ id: contentTypes.settings, text: "Asetukset" },
-			{ id: contentTypes.frontpage, text: "Info" },
 			{ id: contentTypes.todo, text: "TODO-lista" },
 		];
 		if (this.state.settings.mode === 1) {
@@ -198,7 +206,7 @@ class App extends React.Component {
 		return (
 			<div className="app" style={themeStyle}>
 				<Sidebar
-					categories={[...this.state.categories, ...this.state.instructorCategories]}
+					categories={this.getCategories()}
 					changeCategory={(i) => this.changeCategory(i)}
 					changeContent={(id) => this.setState({ contentType: id })}
 					buttons={buttons}

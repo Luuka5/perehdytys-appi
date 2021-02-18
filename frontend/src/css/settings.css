@@ -54,15 +54,7 @@
     background-color: var(--mainColor);
 }
 
-.resetConfirm {
-    border: none;
-    background-color: var(--backgroundColor);
-    padding: 20px;
-    border-radius: 10px;
-    border: 2px solid var(--accentColor2);
-}
-
-.resetConfirm p {
+.resetConfirmText {
     color: var(--textColor);
 }
 

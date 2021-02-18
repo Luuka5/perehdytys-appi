@@ -2,8 +2,16 @@
 .taskHeading {
     color: var(--textColor);
     margin: 10px;
-    padding: 10px;
+    padding: 0px;
     width: fit-content;
+    font-size: 140%;
+    font-weight: 600;
+}
+
+.taskDescription {
+    color: var(--textColor);
+    margin: 10px;
+    padding: 0px;
 }
 
 .taskHeadingContainer {
@@ -65,4 +73,16 @@
     box-sizing: border-box;
 
     background-color: var(--mainColor);
+}
+
+.closeTextButton {
+    width: 50px;
+    height: 50px;
+    top: 0px;
+    left: 0px;
+}
+
+.textContent {
+    color: var(--textColor);
+    white-space: pre-wrap;
 }

@@ -5,6 +5,7 @@
             "id": 0,
             "name": "Työsopimus",
             "link": "https://www.example.com",
+            "text": "työsopimus.txt",
             "priority": 0,
             "category": 0
         },

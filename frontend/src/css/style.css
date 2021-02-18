@@ -17,9 +17,8 @@ html, body {
     --shadowColor: #0008;
     --doneBrightness: 80%;
 
-    background-color: var(--backgroundColor);
     min-height: 100vh;
-    
+    background-color: var(--backgroundColor);
 }
 
 .button {
@@ -59,7 +58,7 @@ button, button:active {
     position: fixed;
     width: 100vw;
     height: 100vh;
-    top: 0px;
+    bottom: 0px;
     left: 0px;
     display: flex;
     flex-direction: column;
@@ -67,5 +66,18 @@ button, button:active {
     justify-content: center;
     background-color: var(--shadowColor);
     color: var(--mainColor);
-    z-index: 200;
+    z-index: 300;
+}
+
+.popupWindow {
+    border: none;
+    background-color: var(--backgroundColor);
+    color: var(--textColor);
+    padding: 20px;
+    margin: 10px;
+    box-sizing: border-box;
+    overflow-y: scroll;
+
+    border-radius: 10px;
+    border: 2px solid var(--accentColor2);
 }

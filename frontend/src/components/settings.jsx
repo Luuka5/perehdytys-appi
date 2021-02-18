@@ -27,8 +27,8 @@ class Settings extends React.Component {
         if (!this.state.confirmReset) return;
         return (
             <div className="popupContainer">
-                <div className="resetConfirm">
-                    <p>Haluatko varmasti poistaa kaikki tiedot?</p>
+                <div className="popupWindow">
+                    <p className="resetConfirmText">Haluatko varmasti poistaa kaikki tiedot?</p>
                     <div className="buttonContainer">
                         <button
                             onClick={() => this.setState({ confirmReset: false })}
@@ -68,10 +68,10 @@ class Settings extends React.Component {
                     <h1 className="optionHeading">Tila:</h1>
                     <div className="options">
                         <Option
-                            text="Oletus tila"
+                            text="Oletustila"
                             selected={this.props.settings.mode === 0}
                             onClick={() => this.handleChange({ mode: 0 })} />
-                        <Option text="Perehdyttäjä tila" selected={this.props.settings.theme === 1}
+                        <Option text="Perehdyttäjätila" selected={this.props.settings.theme === 1}
                             selected={this.props.settings.mode === 1}
                             onClick={() => this.handleChange({ mode: 1 })} />
                     </div>
