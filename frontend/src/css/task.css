@@ -1,3 +1,9 @@
+.taskHeadingContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
 
 .taskHeading {
     color: var(--textColor);
@@ -14,7 +20,7 @@
     padding: 0px;
 }
 
-.taskHeadingContainer {
+.categoryNameContainer {
     width: 100vw;
     display: flex;
     flex-direction: column;
@@ -23,6 +29,15 @@
     background-color: var(--backgroundColor);
     padding: 0px;
     margin: 0px;
+}
+
+.categoryName {
+    color: var(--textColor);
+    margin: 10px;
+    padding: 0px;
+    width: fit-content;
+    font-size: 170%;
+    font-weight: 600;
 }
 
 .task {
@@ -38,7 +53,7 @@
 }
 
 .taskDone {
-    filter: brightness(var(--doneBrightness));
+    opacity: var(--doneOpacity);
 }
 
 .link {
@@ -83,6 +98,5 @@
 }
 
 .textContent {
-    color: var(--textColor);
     white-space: pre-wrap;
 }

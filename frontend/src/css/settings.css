@@ -16,7 +16,6 @@
 .optionHeading {
     font-size: 150%;
     margin: 5px;
-    color: var(--textColor);
 }
 
 .options {
@@ -52,10 +51,6 @@
 .selected {
     border-radius: 5px;
     background-color: var(--mainColor);
-}
-
-.resetConfirmText {
-    color: var(--textColor);
 }
 
 .buttonContainer {

@@ -55,7 +55,7 @@ class Settings extends React.Component {
             <div className="settings">
                 <h1 className="settingsHeading">Asetukset</h1>
                 <div>
-                    <h2 className="optionHeading">Teema:</h2>
+                    <p className="optionHeading">Teema:</p>
                     <div className="options">
                         <Option
                             text="Vaalea"
@@ -65,7 +65,7 @@ class Settings extends React.Component {
                             selected={this.props.settings.theme === 1}
                             onClick={() => this.handleChange({ theme: 1 })} />
                     </div>
-                    <h1 className="optionHeading">Tila:</h1>
+                    <p className="optionHeading">Tila:</p>
                     <div className="options">
                         <Option
                             text="Oletustila"

@@ -15,7 +15,7 @@ html, body {
     --backgroundColor: #ffffff;
     --textColor: #753333;
     --shadowColor: #0008;
-    --doneBrightness: 80%;
+    --doneOpacity: 80%;
 
     min-height: 100vh;
     background-color: var(--backgroundColor);
@@ -34,13 +34,11 @@ html, body {
     background-color: var(--accentColor1);
 }
 
-.loadingContainer {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    width: 100vw;
-    height: 100vh;
+p {
+    color: var(--textColor);
+}
 
+.loadingContainer {
     display: flex;
     justify-content: center;
     align-items: center;

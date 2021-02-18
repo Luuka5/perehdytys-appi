@@ -18,7 +18,7 @@ const contentTypes = {
 	tasks: 1,
 	settings: 2,
 	frontpage: 3,
-	editor: 4,
+	ready: 4,
 	instructorTodo: 5,
 };
 Object.freeze(contentTypes);
@@ -128,10 +128,12 @@ class App extends React.Component {
 			case contentTypes.todo:
 				content = (
 					<Tasks
-						filter={task => 
-							this.state.categories
+						filter={task => {
+							return this.state.categories
 								.map(c => c.id)
-								.includes(task.category)}
+								.includes(task.category)
+								&& !task.done;
+						}}
 						categoryName="Seuraavaksi:"
 						tasks={this.state.tasks}
 						markTask={(id, isDone) => this.markTask(id, isDone)}
@@ -141,10 +143,12 @@ class App extends React.Component {
 			case contentTypes.instructorTodo:
 				content = (
 					<Tasks
-						filter={task => 
-							this.state.instructorCategories
+						filter={task => {
+							return this.state.instructorCategories
 								.map(c => c.id)
-								.includes(task.category)}
+								.includes(task.category)
+								&& !task.done;
+						}}
 						categoryName="Seuraavaksi:"
 						tasks={this.state.tasks}
 						markTask={(id, isDone) => this.markTask(id, isDone)}
@@ -177,7 +181,20 @@ class App extends React.Component {
 					<Frontpage showTasks={() => this.setState({ contentType: contentTypes.todo })}/>
 				);
 				break;
-			case contentTypes.editor:
+			case contentTypes.ready:
+				content = (
+					<Tasks
+						filter={task => {
+							return this.getCategories()
+								.map(c => c.id)
+								.includes(task.category)
+								&& task.done;
+						}}
+						categoryName="Valmiiksi merkityt tehtävät:"
+						tasks={this.state.tasks}
+						markTask={(id, isDone) => this.markTask(id, isDone)}
+					/>
+				);
 				break;
 		}
 
@@ -185,6 +202,7 @@ class App extends React.Component {
 			{ id: contentTypes.frontpage, text: "Etusivu" },
 			{ id: contentTypes.settings, text: "Asetukset" },
 			{ id: contentTypes.todo, text: "TODO-lista" },
+			{ id: contentTypes.ready, text: "Valmiiksi merkityt" },
 		];
 		if (this.state.settings.mode === 1) {
 			buttons = buttons.concat([
@@ -195,10 +213,11 @@ class App extends React.Component {
 		let themeStyle = {};
 		if (this.state.settings.theme === 1) {
 			themeStyle = {
-				"--mainColor": "#b15552",
+				"--mainColor": "#6c3636",
 				"--backgroundColor":" #222021",
 				"--textColor": "#ffffff",
 				"--shadowColor": "#fff2",
+				"--accentColor2": "#de813d",
 				"--doneBrightness": "60%",
 			}
 		}
