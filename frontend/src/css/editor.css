@@ -1,4 +1,9 @@
 
+.editorHeading {
+    font-size: 200%;
+    font-weight: 600;
+}
+
 .editorTask {
     display: flex;
     flex-direction: column;
@@ -8,39 +13,45 @@
     border-radius: 10px;
 }
 
-.column {
-    display: flex;
-    flex-direction: column;
-}
-
 .label {
     color: var(--textColor);
     margin: 5px;
     margin-right: 20px;
     width: fit-content;
+    font-weight: 600;
 }
 
 .property {
     display: flex;
     flex-direction: row;
+    align-items: center;
     justify-content: space-between;
     padding: 5px;
     margin: 5px;
 }
 
-input {
+.input {
     padding: 5px;
     width: max-content
 }
 
-.taskContainer {
+.editorTaskContainer {
     background-color: var(--backgroundColor);
     width: fit-content;
+    padding: 10px;
     overflow: auto;
 }
 
 .editorContainer {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.editableContent {
+    display: flex;
     flex-direction: row;
     justify-content: center;
+    flex-wrap: wrap;
 }

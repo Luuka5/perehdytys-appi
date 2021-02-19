@@ -97,7 +97,7 @@ class Tasks extends React.Component {
                     if (a.done) return 1;
                     if (b.done) return -1;
                 }
-                return a.priority - b.priority
+                return b.priority - a.priority
             });
 
             list = this.props.tasks.filter(this.props.filter).map((task, i) => {

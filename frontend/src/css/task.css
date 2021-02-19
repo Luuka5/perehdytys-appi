@@ -82,6 +82,7 @@
     min-height: 100vh;
 
     margin: 0px;
+    padding: 0px;
     overflow-x: hidden;
     overflow-y: scroll;
     padding-bottom: 30vh;

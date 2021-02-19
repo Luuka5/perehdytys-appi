@@ -50,7 +50,7 @@ class App extends React.Component {
 			categories: [],
 			instructorCategories: [],
 			currnetCategory: 0,
-			contentType: firstTime ? contentTypes.frontpage : contentTypes.editor,
+			contentType: firstTime ? contentTypes.frontpage : contentTypes.todo,
 			tasksDone: tasksDone,
 			settings: settings,
 		}
@@ -110,7 +110,7 @@ class App extends React.Component {
 	}
 
 	getCategories() {
-		if (this.state.settings.mode === 1)
+		if (this.state.settings.instructorMode)
 			return [...this.state.categories, ...this.state.instructorCategories]
 		return this.state.categories;
 	}
@@ -212,7 +212,7 @@ class App extends React.Component {
 			{ id: contentTypes.todo, text: "TODO-lista" },
 			{ id: contentTypes.ready, text: "Valmiiksi merkityt" },
 		];
-		if (this.state.settings.mode === 1) {
+		if (this.state.settings.instructorMode) {
 			buttons = buttons.concat([
 				{ id: contentTypes.instructorTodo, text: "TODO-lista perehdyttäjälle" },
 				{ id: contentTypes.editor, text: "Tehtävä editori" },
