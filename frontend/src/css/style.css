@@ -9,6 +9,11 @@ html, body {
 }
 
 .app {
+    min-height: 100vh;
+    background-color: var(--backgroundColor);
+}
+
+#root, .lightTheme {
     --mainColor: #c83e3b;
     --accentColor1: #ffb6b4;
     --accentColor2: #f3d7a0;
@@ -16,9 +21,24 @@ html, body {
     --textColor: #753333;
     --shadowColor: #0008;
     --doneOpacity: 80%;
+}
 
-    min-height: 100vh;
-    background-color: var(--backgroundColor);
+.darkTheme {
+    --mainColor: #6c3636;
+    --backgroundColor: #222021;
+    --textColor: #ffffff;
+    --shadowColor: #fff2;
+    --accentColor2: #de813d;
+}
+
+@media (prefers-color-scheme: dark) {
+    #root {
+        --mainColor: #6c3636;
+        --backgroundColor: #222021;
+        --textColor: #ffffff;
+        --shadowColor: #fff2;
+        --accentColor2: #de813d;
+    }
 }
 
 .button {

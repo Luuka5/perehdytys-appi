@@ -58,22 +58,27 @@ class Settings extends React.Component {
                     <p className="optionHeading">Teema:</p>
                     <div className="options">
                         <Option
+                            text="Käyttöjärjestelmän oletus"
+                            selected={this.props.settings.theme === ''}
+                            onClick={() => this.handleChange({ theme: '' })} />
+                        <Option
                             text="Vaalea"
-                            selected={this.props.settings.theme === 0}
-                            onClick={() => this.handleChange({ theme: 0 })} />
-                        <Option text="Tumma" selected={this.props.settings.theme === 1}
-                            selected={this.props.settings.theme === 1}
-                            onClick={() => this.handleChange({ theme: 1 })} />
+                            selected={this.props.settings.theme === 'lightTheme'}
+                            onClick={() => this.handleChange({ theme: 'lightTheme' })} />
+                        <Option
+                            text="Tumma"
+                            selected={this.props.settings.theme === 'darkTheme'}
+                            onClick={() => this.handleChange({ theme: 'darkTheme' })} />
                     </div>
                     <p className="optionHeading">Tila:</p>
                     <div className="options">
                         <Option
                             text="Oletustila"
-                            selected={this.props.settings.mode === 0}
-                            onClick={() => this.handleChange({ mode: 0 })} />
+                            selected={!this.props.settings.instructorMode}
+                            onClick={() => this.handleChange({ instructorMode: false })} />
                         <Option text="Perehdyttäjätila" selected={this.props.settings.theme === 1}
-                            selected={this.props.settings.mode === 1}
-                            onClick={() => this.handleChange({ mode: 1 })} />
+                            selected={this.props.settings.instructorMode}
+                            onClick={() => this.handleChange({ instructorMode: true })} />
                     </div>
                 </div>
                 <button

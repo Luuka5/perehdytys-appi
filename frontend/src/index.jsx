@@ -7,11 +7,13 @@ import './css/sidebar.css';
 import './css/settings.css';
 import './css/frontpage.css';
 import './css/images.css';
+import './css/editor.css';
 
 import Sidebar from './components/sidebar.jsx';
 import Tasks from './components/tasks.jsx';
 import Settings from './components/settings.jsx';
 import Frontpage from './components/frontpage.jsx';
+import Editor from './components/editor.jsx';
 
 const contentTypes = {
 	todo: 0,
@@ -20,6 +22,7 @@ const contentTypes = {
 	frontpage: 3,
 	ready: 4,
 	instructorTodo: 5,
+	editor: 6,
 };
 Object.freeze(contentTypes);
 
@@ -37,8 +40,8 @@ class App extends React.Component {
 		let settings = JSON.parse(localStorage.getItem('settings'));
 		if (!settings) {
 			settings = {
-				theme: 0,
-				mode: 0,
+				theme: '',
+				instructorMode: false,
 			}
 		}
 
@@ -47,7 +50,7 @@ class App extends React.Component {
 			categories: [],
 			instructorCategories: [],
 			currnetCategory: 0,
-			contentType: firstTime ? contentTypes.frontpage : contentTypes.todo,
+			contentType: firstTime ? contentTypes.frontpage : contentTypes.editor,
 			tasksDone: tasksDone,
 			settings: settings,
 		}
@@ -96,8 +99,8 @@ class App extends React.Component {
 	reset() {
 		this.setState({
 			settings: {
-				theme: 0,
-				mode: 0,
+				theme: '',
+				instructorMode: false,
 			},
 			tasksDone: [],
 		});
@@ -196,6 +199,11 @@ class App extends React.Component {
 					/>
 				);
 				break;
+			case contentTypes.editor:
+				content = (
+					<Editor />
+				);
+				break;
 		}
 
 		let buttons = [
@@ -207,23 +215,13 @@ class App extends React.Component {
 		if (this.state.settings.mode === 1) {
 			buttons = buttons.concat([
 				{ id: contentTypes.instructorTodo, text: "TODO-lista perehdyttäjälle" },
+				{ id: contentTypes.editor, text: "Tehtävä editori" },
 			]);
 		}
 
-		let themeStyle = {};
-		if (this.state.settings.theme === 1) {
-			themeStyle = {
-				"--mainColor": "#6c3636",
-				"--backgroundColor":" #222021",
-				"--textColor": "#ffffff",
-				"--shadowColor": "#fff2",
-				"--accentColor2": "#de813d",
-				"--doneBrightness": "60%",
-			}
-		}
 
 		return (
-			<div className="app" style={themeStyle}>
+			<div className={"app " + this.state.settings.theme}>
 				<Sidebar
 					categories={this.getCategories()}
 					changeCategory={(i) => this.changeCategory(i)}
